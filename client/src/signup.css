@@ -1,0 +1,136 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Poppins", sans-serif;
+  background: linear-gradient(to bottom, #ffffff, #ffdee9);
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+body::before,
+body::after {
+  content: "";
+  position: absolute;
+  background-size: contain;
+  background-repeat: no-repeat;
+  opacity: 0.5;
+  z-index: -1;
+}
+
+body::before {
+  background-image: url("./assets/Joy.png");
+  width: 300px;
+  height: 300px;
+  top: 0%;
+  left: 0%;
+}
+
+body::after {
+  background-image: url("./assets/Cat.png");
+  width: 300px;
+  height: 300px;
+  top: 0%;
+  right: 0%;
+}
+
+/* Container with Cat Backgrounds */
+.signup-container {
+  position: relative;
+  width: 90%;
+  max-width: 700px;
+  min-height: 600px;
+  background-color: transparent;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  padding: 40px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+/* Signup Form */
+.signup-form {
+  display: flex;
+  flex-direction: column; /* Stack items vertically */
+  align-items: center; /* Center items horizontally */
+  justify-content: center;
+  text-align: center; /* Center-align text */
+  width: 100%;
+}
+
+/* Logo */
+.logo {
+  width: 150px;
+  margin-bottom: 10px;
+  display: block;
+}
+
+/* Headings */
+h1 {
+  font-size: 28px;
+  font-weight: 600;
+  color: #222;
+  margin: 10px 0;
+  text-align: center;
+}
+
+p {
+  font-size: 16px;
+  color: #555;
+  margin: 0 0 20px;
+  text-align: center;
+}
+
+/* Input Fields */
+.input-field {
+  width: 90%;
+  max-width: 400px;
+  padding: 12px;
+  margin: 10px 0;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 14px;
+  font-family: "Poppins", sans-serif;
+}
+
+/* Signup Button */
+.signup-button {
+  width: 90%;
+  max-width: 400px;
+  padding: 12px;
+  background-color: #b23a3a;
+  color: #fff;
+  font-size: 16px;
+  font-weight: 600;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.signup-button:hover {
+  background-color: #a13232;
+}
+
+/* Login Prompt */
+.login-prompt {
+  margin-top: 20px;
+  font-size: 14px;
+}
+
+.login-prompt .login-link {
+  color: #b23a3a;
+  background: none;
+  border: none;
+  font-size: 14px;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.login-prompt .login-link:hover {
+  text-decoration: none;
+}
