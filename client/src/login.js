@@ -1,10 +1,19 @@
-import React from "react";
+import React, { useState } from "react";
 import "./login.css";
 import logo from "./assets/pawmateslogo.png";
 import { useNavigate } from "react-router-dom";
 
 function Login() {
   const navigate = useNavigate(); // Initialize navigate
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+
+  const handleLogin = (e) => {
+    e.preventDefault(); // Prevent form submission
+
+    // Directly navigate to /home without validation
+    navigate("/home");
+  };
 
   return (
     <div className="login-container">
@@ -13,9 +22,21 @@ function Login() {
         <h1>Welcome back,</h1>
         <p>Login to continue!</p>
         <img src={logo} alt="Pawmates Logo" className="logo" />
-        <form>
-          <input type="text" placeholder="Username" className="input-field" />
-          <input type="password" placeholder="Password" className="input-field" />
+        <form onSubmit={handleLogin}>
+          <input
+            type="text"
+            placeholder="Username"
+            className="input-field"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)} // Track username input
+          />
+          <input
+            type="password"
+            placeholder="Password"
+            className="input-field"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)} // Track password input
+          />
           <button
             type="button"
             className="forgot-password"
