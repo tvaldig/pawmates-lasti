@@ -17,7 +17,6 @@ function App() {
         >
           Learn React
         </a>
-        <button>Donate</button>
       </header>
     </div>
   );
