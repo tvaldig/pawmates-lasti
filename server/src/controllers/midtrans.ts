@@ -1,14 +1,14 @@
 import { Request, Response } from "express";
 const midtransClient = require("midtrans-client");
-
+require('dotenv').config();
 let snap = new midtransClient.Snap({
     isProduction: false,
-    serverKey: "SB-Mid-server-LlPJdp8Nlwqpfww9gEKrH7rJ",
+    serverKey: process.env.MIDTRANS_SERVER_KEY
 });
 
 let parameter = {
     transaction_details: {
-        order_id: "YOUR-ORDERID-123456",
+        order_id: "YOUR-ORDERID-12356",
         gross_amount: 100000,
     },
 };
