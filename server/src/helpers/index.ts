@@ -19,3 +19,8 @@ export const decodeSessionToken = (sessionToken: string) => {
 
     return { userId: token, salt }; 
 };
+
+export const generateOrderId = (): string => {
+    const randomDigits = Math.floor(10000 + Math.random() * 90000);
+    return `ORDER-${randomDigits}`;
+  };

@@ -4,9 +4,9 @@ import { authentication, random } from '../helpers/index';
 
 export const register = async (req: Request, res: Response) : Promise<any> => {
     try{
-        const {username, email, school, password} = req.body;
+        const {username, email, password} = req.body;
 
-        if(!email || !password || !school || !username){
+        if(!email || !password || !username){
             return res.sendStatus(400);
             
         }
@@ -18,7 +18,6 @@ export const register = async (req: Request, res: Response) : Promise<any> => {
         const user = await createUser({
             username,
             email,
-            school,
             authentication: {
                 salt,
                 password: authentication(salt, password),
@@ -37,18 +36,21 @@ export const login = async (req: Request, res: Response) : Promise<any> => {
         const {email, password} = req.body;
 
         if(!email || !password){
+            console.log("ada salah 1");
             return res.sendStatus(400);
             
         }
         const user = await getUserByEmail(email).select('+authentication.salt +authentication.password');
 
         if(!user){
+            console.log("ada salah 2");
             return res.sendStatus(400);
         }
 
         const expectHash = authentication(user.authentication.salt, password);
 
         if(user.authentication.password != expectHash){
+            console.log("ada salah 3");
             return res.sendStatus(403);
         }
         const salt = random();

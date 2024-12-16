@@ -2,33 +2,55 @@ import React, { useState } from "react";
 import "./login.css";
 import logo from "./assets/pawmateslogo.png";
 import { useNavigate } from "react-router-dom";
+import toast, {Toaster} from "react-hot-toast";
 
 function Login() {
   const navigate = useNavigate(); // Initialize navigate
-  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const handleLogin = (e) => {
-    e.preventDefault(); // Prevent form submission
 
-    // Directly navigate to /home without validation
-    navigate("/home");
-  };
-
+  const handleLogin = async (email, password) => {
+    try {
+      const response = await fetch("http://localhost:8080/auth/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({email, password }),
+      });
+      const data = await response.json();
+      if (response.ok && data.sessionToken) {
+        toast.success("Login Success!");
+        localStorage.setItem("token", data.sessionToken);
+        console.log(localStorage)
+        localStorage.setItem("userId", data.userId);
+        navigate("/home");
+      } 
+    } catch {
+      toast.error("Ada Salah!");
+    }
+  }
   return (
     <div className="login-container">
+      <Toaster/>
       {/* Login Form */}
       <div className="login-form">
         <h1>Welcome back,</h1>
         <p>Login to continue!</p>
         <img src={logo} alt="Pawmates Logo" className="logo" />
-        <form onSubmit={handleLogin}>
+        <form
+  onSubmit={(e) => {
+    e.preventDefault();
+    handleLogin(email, password); // Call the login function with the input values
+  }}
+>
           <input
             type="text"
-            placeholder="Username"
+            placeholder="Email"
             className="input-field"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)} // Track username input
+            value={email}
+            onChange={(e) => setEmail(e.target.value)} // Track username input
           />
           <input
             type="password"

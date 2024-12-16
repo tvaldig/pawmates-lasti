@@ -70,7 +70,6 @@ export const getProfile = async (req: Request, res: Response): Promise<any> => {
         return res.json({
             username: user.username,
             email: user.email,
-            school: user.school,
         });
     } catch (error) {
         console.error("Error fetching profile:", error);
