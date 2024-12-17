@@ -8,25 +8,33 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
+  position: relative;
 }
 
 body::before,
 body::after {
-content: "";
-position: absolute;
-background-size: contain;
-background-repeat: no-repeat;
-opacity: 0.5;
-z-index: -1;
+  content: "";
+  position: absolute;
+  background-size: contain;
+  background-repeat: no-repeat;
+  opacity: 0.5;
+  z-index: -1;
 }
 
-
 body::before {
+  content: "";
   background-image: url("./assets/Joy.png");
-  width: 300px;
-  height: 300px;
-  top: 0%;
-  left: 0%;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: top left;
+  position: absolute;
+  width: 20vw;
+  height: 20vw;
+  max-width: 300px;
+  max-height: 300px;
+  top: 0;
+  left: 0;
+  z-index: -1;
 }
 
 body::after {
@@ -57,10 +65,10 @@ body::after {
 /* Login Form */
 .login-form {
   display: flex;
-  flex-direction: column; /* Stack items vertically */
-  align-items: center; /* Center items horizontally */
+  flex-direction: column;
+  align-items: center;
   justify-content: center;
-  text-align: center; /* Center-align text */
+  text-align: center;
   width: 100%;
 }
 
@@ -152,4 +160,84 @@ p {
 
 .signup-prompt .signup-link:hover {
   text-decoration: none;
+}
+@media (max-width: 768px) {
+  h1 {
+    font-size: 24px;
+  }
+
+  p {
+    font-size: 14px;
+  }
+
+  .input-field,
+  .login-button {
+    width: 100%;
+    padding: 10px;
+  }
+
+  .login-container {
+    padding: 20px;
+    min-height: 400px;
+  }
+
+  .logo {
+    width: 120px;
+  }
+  body::before {
+    width: 30vw;
+    height: 30vw;
+  }
+}
+
+@media (max-width: 480px) {
+  h1 {
+    font-size: 20px;
+  }
+
+  p {
+    font-size: 12px;
+  }
+
+  .input-field,
+  .login-button {
+    padding: 8px;
+  }
+
+  .forgot-password {
+    font-size: 12px;
+    text-align: center;
+  }
+
+  .signup-prompt {
+    font-size: 12px;
+    text-align: center;
+  }
+
+  .logo {
+    width: 100px;
+  }
+
+  body::before {
+    width: 40vw;
+    height: 40vw;
+  }
+  body::after {
+    width: 150px;
+    height: 150px;
+  }
+}
+
+@media (max-width: 320px) {
+  h1 {
+    font-size: 18px;
+  }
+
+  .login-container {
+    padding: 10px;
+  }
+
+  .logo {
+    width: 80px;
+  }
 }
