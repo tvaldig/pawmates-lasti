@@ -470,54 +470,46 @@ const PawMatesHome = () => {
 
       {/* Chat Section */}
       <aside className="chat-section">
-        <h2 className="chat-title">Live Chat</h2>
-        <div className="chat-messages">
-          <div className="chat-message">
-            <span className="message-time">16/12/2024 22:30</span>
-            <span className="message-author">Bagas:</span>
-            <span className="message-text">Hi! cute cat</span>
-          </div>
-          <div className="chat-message">
-            <span className="message-time">16/12/2024 22:35</span>
-            <span className="message-author">李爱:</span>
-            <span className="message-text">我喜欢这只猫</span>
-          </div>
-          <div className="chat-message">
-            <span className="message-time">16/12/2024 22:35</span>
-            <span className="message-author">Pica:</span>
-            <span className="message-text">Gemes banget</span>
-          </div>
-          <div className="chat-message">
-            <span className="message-time">16/12/2024 22:36</span>
-            <span className="message-author">Valdi:</span>
-            <span className="message-text">我想收养猫</span>
-          </div>
-          <div className="chat-message">
-            <span className="message-time">16/12/2024 22:36</span>
-            <span className="message-author">李花:</span>
-            <span className="message-text">我喜欢猫</span>
-          </div>
-          <div className="chat-message">
-            <span className="message-time">16/12/2024 22:37</span>
-            <span className="message-author">Pica:</span>
-            <span className="message-text">Mau cubit 🐱</span>
-          </div>
-          <div className="chat-message">
-            <span className="message-time">16/12/2024 22:37</span>
-            <span className="message-author">Viktor:</span>
-            <span className="message-text">Selangkah lebih dekat dengan kucing Coblong</span>
-          </div>
-          <div className="chat-message">
-            <span className="message-time">16/12/2024 22:37</span>
-            <span className="message-author">Josia:</span>
-            <span className="message-text">Selamat hari monyet sedunia guys</span>
-          </div>
-        </div>
-        <div className="chat-input">
-          <input type="text" placeholder="Send a message" />
-          <button className="send-button">➤</button>
-        </div>
-      </aside>
+  <h2 className="chat-title">Live Chat</h2>
+  <div className="chat-messages">
+    <div className="chat-message">
+      <span className="message-time">16/12/2024 22:30</span>
+      <span className="message-author">Bagas:</span> Hi! cute cat
+    </div>
+    <div className="chat-message">
+      <span className="message-time">16/12/2024 22:35</span>
+      <span className="message-author">李爱:</span> 我喜欢这只猫
+    </div>
+    <div className="chat-message">
+      <span className="message-time">16/12/2024 22:35</span>
+      <span className="message-author">Pica:</span> Gemes banget
+    </div>
+    <div className="chat-message">
+      <span className="message-time">16/12/2024 22:36</span>
+      <span className="message-author">Valdi:</span> 我想收养猫
+    </div>
+    <div className="chat-message">
+      <span className="message-time">16/12/2024 22:36</span>
+      <span className="message-author">李花:</span> 我喜欢猫
+    </div>
+    <div className="chat-message">
+      <span className="message-time">16/12/2024 22:37</span>
+      <span className="message-author">Pica:</span> Mau cubit 🐱
+    </div>
+    <div className="chat-message">
+      <span className="message-time">16/12/2024 22:37</span>
+      <span className="message-author">Viktor:</span> Selangkah lebih dekat dengan kucing Coblong
+    </div>
+    <div className="chat-message">
+      <span className="message-time">16/12/2024 22:37</span>
+      <span className="message-author">Josia:</span> Selamat hari monyet sedunia guys
+    </div>
+  </div>
+  <div className="chat-input">
+    <input type="text" placeholder="Send a message" />
+    <button className="send-button">➤</button>
+  </div>
+</aside>
     </div>
   );
 };
