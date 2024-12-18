@@ -266,22 +266,33 @@ import './home.css';
 const PawMatesHome = () => {
   const [currentCam, setCurrentCam] = useState('cam1');
   const [donationAmount, setDonationAmount] = useState('');
-  const [localTime, setLocalTime] = useState(new Date().toLocaleTimeString('en-US', {
-    hour: '2-digit',
-    minute: '2-digit',
-    second: '2-digit',
-    hour12: false
-  }));
+  const [localTime, setLocalTime] = useState('');
   const navigate = useNavigate();
 
+  const formatDateTime = () => {
+    const now = new Date();
+    const days = ['Minggu', 'Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu'];
+    const months = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'];
+    
+    const day = days[now.getDay()];
+    const date = now.getDate();
+    const month = months[now.getMonth()];
+    const year = now.getFullYear();
+    const time = now.toLocaleTimeString('en-US', {
+      hour: '2-digit',
+      minute: '2-digit',
+      second: '2-digit',
+      hour12: false
+    });
+
+    return `${day}, ${date} ${month} ${year} - ${time}`;
+  };
+
   useEffect(() => {
+    setLocalTime(formatDateTime());
+    
     const timer = setInterval(() => {
-      setLocalTime(new Date().toLocaleTimeString('en-US', {
-        hour: '2-digit',
-        minute: '2-digit',
-        second: '2-digit',
-        hour12: false
-      }));
+      setLocalTime(formatDateTime());
     }, 1000);
 
     return () => clearInterval(timer);
@@ -447,7 +458,7 @@ const PawMatesHome = () => {
         {/* Stats Section */}
         <div className="stats-container">
           <div className="stats-header">
-            <span className="local-time">Local Time: {localTime}</span>
+            <span className="local-time">{localTime}</span>
             <div className="action-buttons">
               <button>Like</button>
               <button>Snap</button>
@@ -470,46 +481,54 @@ const PawMatesHome = () => {
 
       {/* Chat Section */}
       <aside className="chat-section">
-  <h2 className="chat-title">Live Chat</h2>
-  <div className="chat-messages">
-    <div className="chat-message">
-      <span className="message-time">16/12/2024 22:30</span>
-      <span className="message-author">Bagas:</span> Hi! cute cat
-    </div>
-    <div className="chat-message">
-      <span className="message-time">16/12/2024 22:35</span>
-      <span className="message-author">李爱:</span> 我喜欢这只猫
-    </div>
-    <div className="chat-message">
-      <span className="message-time">16/12/2024 22:35</span>
-      <span className="message-author">Pica:</span> Gemes banget
-    </div>
-    <div className="chat-message">
-      <span className="message-time">16/12/2024 22:36</span>
-      <span className="message-author">Valdi:</span> 我想收养猫
-    </div>
-    <div className="chat-message">
-      <span className="message-time">16/12/2024 22:36</span>
-      <span className="message-author">李花:</span> 我喜欢猫
-    </div>
-    <div className="chat-message">
-      <span className="message-time">16/12/2024 22:37</span>
-      <span className="message-author">Pica:</span> Mau cubit 🐱
-    </div>
-    <div className="chat-message">
-      <span className="message-time">16/12/2024 22:37</span>
-      <span className="message-author">Viktor:</span> Selangkah lebih dekat dengan kucing Coblong
-    </div>
-    <div className="chat-message">
-      <span className="message-time">16/12/2024 22:37</span>
-      <span className="message-author">Josia:</span> Selamat hari monyet sedunia guys
-    </div>
-  </div>
-  <div className="chat-input">
-    <input type="text" placeholder="Send a message" />
-    <button className="send-button">➤</button>
-  </div>
-</aside>
+        <h2 className="chat-title">Live Chat</h2>
+        <div className="chat-messages">
+          <div className="chat-message">
+            <span className="message-time">16/12/2024 22:30</span>
+            <span className="message-author">Bagas:</span>
+            Hi! cute cat
+          </div>
+          <div className="chat-message">
+            <span className="message-time">16/12/2024 22:35</span>
+            <span className="message-author">李爱:</span>
+            我喜欢这只猫
+          </div>
+          <div className="chat-message">
+            <span className="message-time">16/12/2024 22:35</span>
+            <span className="message-author">Pica:</span>
+            Gemes banget
+          </div>
+          <div className="chat-message">
+            <span className="message-time">16/12/2024 22:36</span>
+            <span className="message-author">Valdi:</span>
+            我想收养猫
+          </div>
+          <div className="chat-message">
+            <span className="message-time">16/12/2024 22:36</span>
+            <span className="message-author">李花:</span>
+            我喜欢猫
+          </div>
+          <div className="chat-message">
+            <span className="message-time">16/12/2024 22:37</span>
+            <span className="message-author">Pica:</span>
+            Mau cubit 🐱
+          </div>
+          <div className="chat-message">
+            <span className="message-time">16/12/2024 22:37</span>
+            <span className="message-author">Viktor:</span>
+            Selangkah lebih dekat dengan kucing Coblong
+          </div>
+          <div className="chat-message">
+            <span className="message-time">16/12/2024 22:37</span>
+            <span className="message-author">Josia:</span>
+            Selamat hari monyet sedunia guys
+          </div>
+        </div>
+        <div className="chat-input">
+          <input type="text" placeholder="Send a message" />
+          <button className="send-button">➤</button>
+        </div>
+      </aside>
     </div>
   );
 };
