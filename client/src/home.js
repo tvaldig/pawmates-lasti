@@ -14,6 +14,7 @@ const PawMatesHome = () => {
   const [currentCam, setCurrentCam] = useState('cam1');
   const [donationAmount, setDonationAmount] = useState('');
   const navigate = useNavigate();
+
   const getCamImage = () => {
     switch(currentCam) {
       case 'cam1':
@@ -28,87 +29,77 @@ const PawMatesHome = () => {
   };
 
   const handleLogout = (e) => {
-    e.preventDefault(); // Prevent form submission
-
+    e.preventDefault();
     localStorage.removeItem('token');
     localStorage.removeItem('userId');
     navigate("/");
   };
 
   useEffect(() => {
-      // Load Midtrans Snap.js dynamically when component mounts
-      const script = document.createElement("script");
-      script.src = "https://app.sandbox.midtrans.com/snap/snap.js"; // Midtrans Snap.js URL
-      script.setAttribute("data-client-key", "SB-Mid-client-aipU0Myo3pDpeGME"); // Replace with your sandbox client key
-      script.async = true;
-  
-      // Append the script to the document body
-      document.body.appendChild(script);
-  
-      // Cleanup: Remove script when component unmounts
-      return () => {
-        document.body.removeChild(script);
-      };
-    }, []);
-  
-    const handleDonate = () => {
-      if (!donationAmount) {
-        alert("Please enter a donation amount.");
-        return;
-      }
-      // Fetch the transaction token from your server
-      fetch("http://localhost:8080/transaction", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ gross_amount: donationAmount }),
-      }) // Update this to match your backend endpoint
-        .then((response) => {
-          if (!response.ok) {
-            throw new Error(`HTTP error! Status: ${response.status}`);
-          }
-          return response.json();
-        })
-        .then((data) => {
-          const transactionToken = data.transactionToken;
-  
-          if (window.snap) {
-            // Trigger Midtrans Snap popup
-            window.snap.pay(transactionToken, {
-              onSuccess: function (result) {
-                console.log("Payment Success:", result);
-              },
-              onPending: function (result) {
-                console.log("Payment Pending:", result);
-              },
-              onError: function (result) {
-                console.error("Payment Error:", result);
-              },
-              onClose: function () {
-                console.log("Payment popup closed without completing the payment.");
-              },
-            });
-          } else {
-            console.error("Midtrans Snap.js not loaded properly.");
-          }
-        })
-        .catch((error) => {
-          console.error("Error fetching transaction token:", error);
-    
-        });
+    const script = document.createElement("script");
+    script.src = "https://app.sandbox.midtrans.com/snap/snap.js";
+    script.setAttribute("data-client-key", "SB-Mid-client-aipU0Myo3pDpeGME");
+    script.async = true;
+    document.body.appendChild(script);
+    return () => {
+      document.body.removeChild(script);
     };
+  }, []);
+  
+  const handleDonate = () => {
+    if (!donationAmount) {
+      alert("Please enter a donation amount.");
+      return;
+    }
+    fetch("http://localhost:8080/transaction", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ gross_amount: donationAmount }),
+    })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+        return response.json();
+      })
+      .then((data) => {
+        const transactionToken = data.transactionToken;
+
+        if (window.snap) {
+          window.snap.pay(transactionToken, {
+            onSuccess: function (result) {
+              console.log("Payment Success:", result);
+            },
+            onPending: function (result) {
+              console.log("Payment Pending:", result);
+            },
+            onError: function (result) {
+              console.error("Payment Error:", result);
+            },
+            onClose: function () {
+              console.log("Payment popup closed without completing the payment.");
+            },
+          });
+        } else {
+          console.error("Midtrans Snap.js not loaded properly.");
+        }
+      })
+      .catch((error) => {
+        console.error("Error fetching transaction token:", error);
+      });
+  };
+
   return (
     <div className="container">
       {/* Left Sidebar */}
       <div className="sidebar">
-        {/* Logo Section */}
         <div className="logo-container">
           <img src={logo} alt="Pawmates Logo" className="logo" />
         </div>
         
-         {/* Navigation Links */}
-         <nav className="nav-menu">
+        <nav className="nav-menu">
           <button className="nav-item">Home</button>
           <button className="nav-item">Feeding Spot</button>
           <button className="nav-item">Community</button>
@@ -118,7 +109,6 @@ const PawMatesHome = () => {
           </button>
         </nav>
 
-        {/* Logout Button */}
         <button className="logout-btn" onClick={handleLogout}>Logout</button>
       </div>
 
@@ -126,14 +116,15 @@ const PawMatesHome = () => {
       <main className="main-content">
         <h1 className="page-title">Feeding Spot Coblong 小猫</h1>
 
-        {/* Video Player */}
+        {/* Video Player with Fixed Aspect Ratio */}
         <div className="video-container">
-          <img src={getCamImage()} alt="Cat feed" className="video-feed" />
-          <div className="video-controls-overlay">
-            <div className="play-button">▶</div>
-            <div className="timestamp">1.02</div>
-            <div className="progress-bar">
-              <div className="progress-bar-fill"></div>
+          <div className="video-wrapper">
+            <img src={getCamImage()} alt="Cat feed" className="video-feed" />
+            <div className="video-controls-overlay">
+              <div className="play-button">▶</div>
+              <div className="progress-bar">
+                <div className="progress-bar-fill"></div>
+              </div>
             </div>
           </div>
         </div>
@@ -170,12 +161,15 @@ const PawMatesHome = () => {
             placeholder="Nominal"
             className="input-field"
             value={donationAmount}
-            onChange={(e) => setDonationAmount(e.target.value)} // Update donation amount
-        
+            onChange={(e) => setDonationAmount(e.target.value)}
           />
-          <button className="donate-button" onClick={handleDonate}
-            disabled={!donationAmount}>Donasi</button>
-         
+          <button 
+            className="donate-button" 
+            onClick={handleDonate}
+            disabled={!donationAmount}
+          >
+            Donasi
+          </button>
         </div>
 
         {/* Stats Section */}
@@ -191,11 +185,11 @@ const PawMatesHome = () => {
 
           <div className="stats-grid">
             <div className="stat-box">
-            <img className="drink-icon" alt="Fish Food"src={FishFood}/>
+              <img className="drink-icon" alt="Fish Food" src={FishFood}/>
               <span className="stat-value">48%</span>
             </div>
             <div className="stat-box">
-              <img className="drink-icon" alt="Fish Food"src={SparklingWater}/>
+              <img className="drink-icon" alt="Fish Food" src={SparklingWater}/>
               <span className="stat-value">60%</span>
             </div>
           </div>
