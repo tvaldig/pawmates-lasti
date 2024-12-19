@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import "./login.css";
 import logo from "./assets/pawmateslogo.png";
+import Cat from "./assets/Cat.png"
+import Joy from "./assets/Joy.png"
 import { useNavigate } from "react-router-dom";
 import toast, {Toaster} from "react-hot-toast";
 
@@ -28,11 +30,13 @@ function Login() {
         navigate("/home");
       } 
     } catch {
-      toast.error("Ada Salah!");
+      toast.error("Login Failed!");
     }
   }
   return (
     <div className="login-container">
+       <img src={Joy} alt="Joy" class="joy-image" />
+       <img src={Cat} alt="Cat" class="cat-image" />
       <Toaster/>
       {/* Login Form */}
       <div className="login-form">
@@ -62,7 +66,7 @@ function Login() {
           <button
             type="button"
             className="forgot-password"
-            onClick={() => alert("Forgot password clicked!")}
+            onClick={() => toast.error("Feature on Development")}
           >
             Forgot password
           </button>

@@ -1,6 +1,8 @@
 import React, {useState} from "react";
 import "./signup.css";
 import logo from "./assets/pawmateslogo.png";
+import Cat from "./assets/Cat.png"
+import Joy from "./assets/Joy.png"
 import { useNavigate } from "react-router-dom";
 import toast, {Toaster} from "react-hot-toast";
 
@@ -32,12 +34,14 @@ function Signup() {
     }
   };
   return (
-    <div className="signup-container">
+    <div className="signup-container">  
+    
+    <img src={Joy} alt="Joy" class="joy-image" />
+           <img src={Cat} alt="Cat" class="cat-image" />
       <Toaster />
       {/* Signup Form */}
       <div className="signup-form">
-        <h1>Welcome back,</h1>
-        <p>Sign up to join us!</p>
+      <h1>Register now!</h1>
         <img src={logo} alt="Pawmates Logo" className="logo" />
         <form
   onSubmit={(e) => {

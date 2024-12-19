@@ -1,65 +1,64 @@
-body {
-  margin: 0;
-  padding: 0;
-  font-family: "Poppins", sans-serif;
-  background: linear-gradient(to bottom, #ffffff, #ffdee9);
-  height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-body::before,
-body::after {
-  content: "";
+/* Joy image styling */
+.joy-image {
   position: absolute;
-  background-size: contain;
-  background-repeat: no-repeat;
+  top: 0;
+  left: 0;
+  width: 20vw;
+  max-width: 300px;
+  height: auto;
   opacity: 0.5;
-  z-index: -1;
 }
 
-body::before {
-  background-image: url("./assets/Joy.png");
+/* Cat image styling */
+.cat-image {
+  position: absolute;
+  top: 0;
+  right: 0;
   width: 300px;
-  height: 300px;
-  top: 0%;
-  left: 0%;
+  height: auto;
+  opacity: 0.5;
+  z-index: 2;
 }
 
-body::after {
-  background-image: url("./assets/Cat.png");
-  width: 300px;
-  height: 300px;
-  top: 0%;
-  right: 0%;
-}
 
 /* Container with Cat Backgrounds */
 .signup-container {
   position: relative;
-  width: 90%;
-  max-width: 700px;
-  min-height: 600px;
-  background-color: transparent;
-  border-radius: 12px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-  padding: 40px 20px;
+  width: 100%;
+  background: linear-gradient(to bottom, #ffffff, #ffdee9);
+  z-index: 0;
   display: flex;
+  min-height: 100vh;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   overflow: hidden;
+  padding: 4rem;
+  box-sizing: border-box;
 }
 
 /* Signup Form */
 .signup-form {
   display: flex;
-  flex-direction: column; /* Stack items vertically */
-  align-items: center; /* Center items horizontally */
+  flex-direction: column; /* Stack elements vertically */
+  align-items: center;
   justify-content: center;
-  text-align: center; /* Center-align text */
+  text-align: center; 
   width: 100%;
+  max-width: 400px; /* Optional: Limit the form's width */
+  margin: 0 auto; /* Center the form horizontally */
+}
+
+/* Input Fields */
+.input-field {
+  width: 100%; /* Full width within the form container */
+  padding: 12px;
+  margin: 10px 0; /* Add spacing between input fields */
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 14px;
+  font-family: "Poppins", sans-serif;
+  box-sizing: border-box; /* Ensure padding doesn't affect total width */
 }
 
 /* Logo */
@@ -85,22 +84,12 @@ p {
   text-align: center;
 }
 
-/* Input Fields */
-.input-field {
-  width: 90%;
-  max-width: 400px;
-  padding: 12px;
-  margin: 10px 0;
-  border: 1px solid #ccc;
-  border-radius: 6px;
-  font-size: 14px;
-  font-family: "Poppins", sans-serif;
-}
 
 /* Signup Button */
 .signup-button {
   width: 90%;
   max-width: 400px;
+  margin-top: 25px;
   padding: 12px;
   background-color: #b23a3a;
   color: #fff;
@@ -150,10 +139,6 @@ p {
     font-size: 14px;
   }
 
-  .signup-container {
-    min-height: 500px;
-    padding: 30px 15px;
-  }
 
   body::before,
   body::after {
